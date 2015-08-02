@@ -1,0 +1,53 @@
+RunActionIntent Run Action {Enable Sprinklers|ActionName}
+RunActionIntent Run Action {Disable Sprinklers|ActionName}
+RunActionIntent Run {Enable Sprinklers|ActionName}
+RunActionIntent Run {Disable Sprinklers|ActionName}
+RunActionIntent {Enable Sprinklers|ActionName}
+RunActionIntent {Disable Sprinklers|ActionName}
+
+RunActionIntent Run Action {Living Room Lights Off|ActionName}
+RunActionIntent Run Action {Living Room Lights On|ActionName}
+RunActionIntent Run {Living Room Lights Off|ActionName}
+RunActionIntent Run {Living Room Lights On|ActionName}
+RunActionIntent {Living Room Lights Off|ActionName}
+RunActionIntent {Living Room Lights On|ActionName}
+
+DeviceChangeIntent turn {off|Binary} the {Sprinklers|Device}
+DeviceChangeIntent turn {on|Binary} the {Sprinklers|Device}
+DeviceChangeIntent turn the {Sprinklers|Device} {off|Binary}
+DeviceChangeIntent turn the {Sprinklers|Device} {on|Binary}
+DeviceChangeIntent {run|Binary} the {Sprinklers|Device}
+DeviceChangeIntent {activate|Binary} the {Sprinklers|Device}
+DeviceChangeIntent {start|Binary} the {Sprinklers|Device}
+DeviceChangeIntent {stop|Binary} the {Sprinklers|Device}
+DeviceChangeIntent {pause|Binary} the {Sprinklers|Device}
+DeviceChangeIntent {resume|Binary} the {Sprinklers|Device}
+
+DeviceChangeIntent set the {Thermostat|Device} to {seventy two|Numerical}
+DeviceChangeIntent set the {Thermostat|Device} to {seventy two degrees|Numerical}
+
+DeviceChangeIntent dim {Guest Bathroom Light|Device} to {seventy seven|Percent}
+DeviceChangeIntent dim {Guest Bathroom Light|Device} to {seventy seven|Percent} percent
+DeviceChangeIntent dim the {Guest Bathroom Light|Device} to {seventy seven|Percent}
+DeviceChangeIntent dim the {Guest Bathroom Light|Device} to {seventy seven|Percent} percent
+
+DeviceChangeIntent set {Guest Bathroom Light|Device} to {seventy seven|Percent}
+DeviceChangeIntent set {Guest Bathroom Light|Device} to {seventy seven|Percent} percent
+DeviceChangeIntent set the {Guest Bathroom Light|Device} to {seventy seven|Percent}
+DeviceChangeIntent set the {Guest Bathroom Light|Device} to {seventy seven|Percent} percent
+
+DeviceChangeIntent turn {on|Binary} {Guest Bathroom Fan|Device}
+DeviceChangeIntent turn {off|Binary} {Guest Bathroom Fan|Device}
+DeviceChangeIntent turn {on|Binary} the {Guest Bathroom Fan|Device}
+DeviceChangeIntent turn {off|Binary} the {Guest Bathroom Fan|Device}
+
+DeviceChangeIntent turn {on|Binary} {Guest Bathroom Heated Floor|Device}
+DeviceChangeIntent turn {off|Binary} {Guest Bathroom Heated Floor|Device}
+DeviceChangeIntent turn {on|Binary} the {Guest Bathroom Heated Floor|Device}
+DeviceChangeIntent turn {off|Binary} the {Guest Bathroom Heated Floor|Device}
+
+DeviceChangeIntent turn {on|Binary} {Guest Bathroom Light|Device}
+DeviceChangeIntent turn {off|Binary} {Guest Bathroom Light|Device}
+DeviceChangeIntent turn {on|Binary} the {Guest Bathroom Light|Device}
+DeviceChangeIntent turn {off|Binary} the {Guest Bathroom Light|Device}
+
