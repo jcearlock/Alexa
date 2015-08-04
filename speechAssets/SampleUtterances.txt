@@ -1,53 +1,57 @@
-RunActionIntent Run Action {Enable Sprinklers|ActionName}
-RunActionIntent Run Action {Disable Sprinklers|ActionName}
-RunActionIntent Run {Enable Sprinklers|ActionName}
-RunActionIntent Run {Disable Sprinklers|ActionName}
-RunActionIntent {Enable Sprinklers|ActionName}
-RunActionIntent {Disable Sprinklers|ActionName}
+RunActionIntent Run Action {enable sprinklers|ActionName}
+RunActionIntent Run Action {disable sprinklers|ActionName}
+RunActionIntent Run {enable sprinklers|ActionName}
+RunActionIntent Run {disable sprinklers|ActionName}
+RunActionIntent {enable sprinklers|ActionName}
+RunActionIntent {disable sprinklers|ActionName}
 
-RunActionIntent Run Action {Living Room Lights Off|ActionName}
-RunActionIntent Run Action {Living Room Lights On|ActionName}
-RunActionIntent Run {Living Room Lights Off|ActionName}
-RunActionIntent Run {Living Room Lights On|ActionName}
-RunActionIntent {Living Room Lights Off|ActionName}
-RunActionIntent {Living Room Lights On|ActionName}
+RunActionIntent Run Action {living room lights off|ActionName}
+RunActionIntent Run Action {living room lights on|ActionName}
+RunActionIntent Run {living room lights off|ActionName}
+RunActionIntent Run {living room lights on|ActionName}
+RunActionIntent {living room lights off|ActionName}
+RunActionIntent {living room lights on|ActionName}
 
-DeviceChangeIntent turn {off|Binary} the {Sprinklers|Device}
-DeviceChangeIntent turn {on|Binary} the {Sprinklers|Device}
-DeviceChangeIntent turn the {Sprinklers|Device} {off|Binary}
-DeviceChangeIntent turn the {Sprinklers|Device} {on|Binary}
-DeviceChangeIntent {run|Binary} the {Sprinklers|Device}
-DeviceChangeIntent {activate|Binary} the {Sprinklers|Device}
-DeviceChangeIntent {start|Binary} the {Sprinklers|Device}
-DeviceChangeIntent {stop|Binary} the {Sprinklers|Device}
-DeviceChangeIntent {pause|Binary} the {Sprinklers|Device}
-DeviceChangeIntent {resume|Binary} the {Sprinklers|Device}
+DeviceChangeIntent turn {off|Binary} the {sprinklers|Device}
+DeviceChangeIntent turn {on|Binary} the {sprinklers|Device}
+DeviceChangeIntent turn the {sprinklers|Device} {off|Binary}
+DeviceChangeIntent turn the {sprinklers|Device} {on|Binary}
+DeviceChangeIntent {run|Binary} the {sprinklers|Device}
+DeviceChangeIntent {activate|Binary} the {sprinklers|Device}
+DeviceChangeIntent {start|Binary} the {sprinklers|Device}
+DeviceChangeIntent {stop|Binary} the {sprinklers|Device}
+DeviceChangeIntent {pause|Binary} the {sprinklers|Device}
+DeviceChangeIntent {resume|Binary} the {sprinklers|Device}
 
-DeviceChangeIntent set the {Thermostat|Device} to {seventy two|Numerical}
-DeviceChangeIntent set the {Thermostat|Device} to {seventy two degrees|Numerical}
+DeviceChangeIntent set the {thermostat|Device} to {seventy two|Numerical}
+DeviceChangeIntent set the {thermostat|Device} to {seventy two degrees|Numerical}
 
-DeviceChangeIntent dim {Guest Bathroom Light|Device} to {seventy seven|Percent}
-DeviceChangeIntent dim {Guest Bathroom Light|Device} to {seventy seven|Percent} percent
-DeviceChangeIntent dim the {Guest Bathroom Light|Device} to {seventy seven|Percent}
-DeviceChangeIntent dim the {Guest Bathroom Light|Device} to {seventy seven|Percent} percent
+DeviceChangeIntent dim {guest bathroom light|Device} to {seventy seven|Percent}
+DeviceChangeIntent dim {guest bathroom light|Device} to {seventy seven|Percent} percent
+DeviceChangeIntent dim the {guest bathroom light|Device} to {seventy seven|Percent}
+DeviceChangeIntent dim the {guest bathroom light|Device} to {seventy seven|Percent} percent
 
-DeviceChangeIntent set {Guest Bathroom Light|Device} to {seventy seven|Percent}
-DeviceChangeIntent set {Guest Bathroom Light|Device} to {seventy seven|Percent} percent
-DeviceChangeIntent set the {Guest Bathroom Light|Device} to {seventy seven|Percent}
-DeviceChangeIntent set the {Guest Bathroom Light|Device} to {seventy seven|Percent} percent
+DeviceChangeIntent set {guest bathroom light|Device} to {seventy seven|Percent}
+DeviceChangeIntent set {guest bathroom light|Device} to {seventy seven|Percent} percent
+DeviceChangeIntent set the {guest bathroom light|Device} to {seventy seven|Percent}
+DeviceChangeIntent set the {guest bathroom light|Device} to {seventy seven|Percent} percent
 
-DeviceChangeIntent turn {on|Binary} {Guest Bathroom Fan|Device}
-DeviceChangeIntent turn {off|Binary} {Guest Bathroom Fan|Device}
-DeviceChangeIntent turn {on|Binary} the {Guest Bathroom Fan|Device}
-DeviceChangeIntent turn {off|Binary} the {Guest Bathroom Fan|Device}
+DeviceChangeIntent turn {on|Binary} {guest bathroom fan|Device}
+DeviceChangeIntent turn {off|Binary} {guest bathroom fan|Device}
+DeviceChangeIntent turn {on|Binary} the {guest bathroom fan|Device}
+DeviceChangeIntent turn {off|Binary} the {guest bathroom fan|Device}
 
-DeviceChangeIntent turn {on|Binary} {Guest Bathroom Heated Floor|Device}
-DeviceChangeIntent turn {off|Binary} {Guest Bathroom Heated Floor|Device}
-DeviceChangeIntent turn {on|Binary} the {Guest Bathroom Heated Floor|Device}
-DeviceChangeIntent turn {off|Binary} the {Guest Bathroom Heated Floor|Device}
+DeviceChangeIntent turn {on|Binary} {guest bathroom heated floor|Device}
+DeviceChangeIntent turn {off|Binary} {guest bathroom heated floor|Device}
+DeviceChangeIntent turn {on|Binary} the {guest bathroom heated floor|Device}
+DeviceChangeIntent turn {off|Binary} the {guest bathroom heated floor|Device}
 
-DeviceChangeIntent turn {on|Binary} {Guest Bathroom Light|Device}
-DeviceChangeIntent turn {off|Binary} {Guest Bathroom Light|Device}
-DeviceChangeIntent turn {on|Binary} the {Guest Bathroom Light|Device}
-DeviceChangeIntent turn {off|Binary} the {Guest Bathroom Light|Device}
+DeviceChangeIntent turn {on|Binary} {guest bathroom light|Device}
+DeviceChangeIntent turn {off|Binary} {guest bathroom light|Device}
+DeviceChangeIntent turn {on|Binary} the {guest bathroom light|Device}
+DeviceChangeIntent turn {off|Binary} the {guest bathroom light|Device}
 
+DeviceChangeIntent turn {on|Binary} {laundry room light|Device}
+DeviceChangeIntent turn {off|Binary} {laundry room light|Device}
+DeviceChangeIntent turn {on|Binary} the {laundry room light|Device}
+DeviceChangeIntent turn {off|Binary} the {laundry room light|Device}
