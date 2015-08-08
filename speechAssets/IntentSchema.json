@@ -27,7 +27,7 @@
                 },
                 {
                     "name": "Binary",
-                    "type": "NUMBER"
+                    "type": "LITERAL"
                 },
                 {
                     "name": "Numerical",
