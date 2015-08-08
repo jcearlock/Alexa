@@ -38,7 +38,7 @@ npm install
 
 Edit config variables in ```askindigo/src/index.js```
 
-Zip the following contents under ```askindigo/src/```
+Zip the following contents under ```askindigo/src/``` (The zip MUST NOT include the ```src``` folder)
 
 ```
 askindigo/src/node_modules
