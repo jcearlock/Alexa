@@ -30,20 +30,40 @@ Alexa: "Ok"
 
 Instructions:
 
+Get the codez, cd into project directory
 ```
 git clone https://github.com/msreynolds/askindigo.git
-cd ./askindigo/src
-npm install
+cd askindigo
 ```
 
-Edit config variables in ```askindigo/src/index.js```
+Edit all configuration variables in ```./src/index.js```
+```
+/** Indigo Credentials */
+var username="indigo username";
+var password="indigo password";
 
-Zip the following contents under ```askindigo/src/``` (The zip MUST NOT include the ```src``` folder)
+/** Indigo Public Hostname */
+var hostname="https://yourcname.goprism.com";
+var port="80";
+
+/** Specific Device names used in speech */
+// ex. device name is 'nest', you say 'thermostat', command uses 'nest'
+var thermostatDeviceName = "nest";
+
+// ex. device name is 'ir-master-pro', you say 'sprinklers', command uses 'ir-master-pro'
+var sprinklerDeviceName = "ir-master-pro"; 
+
+/** Amazon Echo Skill application Id */
+var APP_ID = 'amzn1.echo-sdk-ams.app.youramazonapplicationid';
 
 ```
-askindigo/src/node_modules
-askindigo/src/AlexaSkill.js
-askindigo/src/index.js
+
+
+Build the zip file you will upload to Amazon Lambda:
+
+```
+chmod 775 ./build.sh
+./build.sh
 ```
 
 Create a Lambda function called 'ASKIndigo'
