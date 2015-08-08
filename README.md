@@ -59,7 +59,7 @@ var APP_ID = 'amzn1.echo-sdk-ams.app.youramazonapplicationid';
 ```
 
 
-Build the zip file you will upload to Amazon Lambda:
+Build the zip file you will upload to Amazon Lambda (the archive is stored in ```./dist/askIndigo.zip```):
 
 ```
 chmod 775 ./build.sh
