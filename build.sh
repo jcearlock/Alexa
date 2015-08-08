@@ -1,4 +1,6 @@
 cd src
 npm install
 zip -r askIndigo.zip . -x package.json
-mv askIndigo.zip ../askIndigo.zip
+rm -fr ../dist
+mkdir ../dist
+mv ./askIndigo.zip ../dist/askIndigo.zip
