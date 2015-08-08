@@ -81,8 +81,8 @@ exports.handler = function (event, context) {
 
 /** gives the welcome greeting */
 function getWelcomeResponse(response) {
-    var speechOutput = "What would like Indigo to do?";
-    var repromptText = "I did not understand you, please try again";
+    var speechOutput = "Ok, what should Indigo do?";
+    var repromptText = "I did not understand you, please try again.";
     response.ask(speechOutput, repromptText);
 }
 
@@ -198,17 +198,17 @@ function makeRequest( path, description, response) {
 function isBinaryValueTrue(binaryValue) {
 
     binaryValue = binaryValue.toLowerCase();
-
+    
     var isTrue =
         (binaryValue === 'true' ||
-        binaryValue === '1'    ||
-        binaryValue === 'one'  ||
-        binaryValue === 'on'   ||
-        binaryValue === 'start' ||
-        binaryValue === 'resume' ||
-        binaryValue === 'activate' ||
-        binaryValue === 'run' ||
-        binaryValue === 'play'
+         binaryValue === '1'    ||
+         binaryValue === 'one'  ||
+         binaryValue === 'on'   ||
+         binaryValue === 'start' ||
+         binaryValue === 'resume' ||
+         binaryValue === 'activate' ||
+         binaryValue === 'run' ||
+         binaryValue === 'play'
         );
 
     return isTrue;
