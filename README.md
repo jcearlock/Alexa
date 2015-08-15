@@ -30,7 +30,7 @@ Alexa: "Ok"
 
 Instructions:
 
-Step X) Prepare your own source code to upload to the Amazon Lambda Function console:
+Step 1) Prepare your own source code to upload to the Amazon Lambda Function console:
 
 Get the codez, cd into project directory
 ```
@@ -68,17 +68,20 @@ chmod 775 ./build.sh
 ```
 
 
-Step X) Create your 'ASKIndigo' Alexa Skill in the Amazon Developer Console:
+
+Step 2) Create your 'ASKIndigo' Alexa Skill in the Amazon Developer Console:
 
 Go to ```https://developer.amazon.com/edw/home.html```
 
 ![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonDevelopmentConsole-Step1-ASKIndigo-CreateSkill.png)
 
-Step 2) Edit the skil, Set invocation name to 'indigo' (or whatever you like) in the Amazon Alexa Developer Console:
+
+Step 3) Edit the skil, Set invocation name to 'indigo' (or whatever you like) in the Amazon Alexa Developer Console:
 
 ![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonDevelopmentConsole-Step2-ASKIndigo-SkillInformation.png)
 
-Step X) 
+
+Step 4) 
 Copy/Paste the contents of ```askIndigo/speechAssets/IntentSchema.json``` into the appropriate section of the Interaction Model in the Amazon Developer Console:
 
 Edit the file ```askIndigo/speechAssets/SampleUtterances.txt``` with your own device name customizations.  Copy/Paste the contents into the appropriate section of the Interaction Model in the Amazon Developer Console:
@@ -86,16 +89,16 @@ Edit the file ```askIndigo/speechAssets/SampleUtterances.txt``` with your own de
 ![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonDevelopmentConsole-Step3-ASKIndigo-InteractionModel.png)
 
 You DO NOT need to complete the last step labeled 'Publishing Information':
+
 PLEASE DO NOT PUBLISH THIS SKILL IN YOUR NAME
 ![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonDevelopmentConsole-Step4-ASKIndigo-Test.png)
 
-Step X) 
+
+Step 5) Create an AWS Role that your Lambda Function will run as:
 
 
-Step X) Create an AWS Role that your Lambda Function will run as:
 
-
-Step X) Create a Lambda function called 'ASKIndigo' in the Amazon Lambda Function Console:
+Step 6) Create a Lambda function called 'ASKIndigo' in the Amazon Lambda Function Console:
 
 Go to ```https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions```
 
@@ -104,6 +107,13 @@ Go to ```https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions`
 ![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step0b-ASKIndigoFunction.png)
 
 
+
+Step 7) Name your Lambda function, select the ```./dist/askIndigo.zip``` to Upload, Select your AWS Role, Set Timeout:
+
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step0c-ASKIndigoFunction.png)
+
+
+Step 8) Test your Skill:
 
 To test your skill, you use fake Alexa request payloads called Sample Events, in JSON format.
 
