@@ -71,6 +71,14 @@ Upload Zip file via Amazon Lambda Function console
 ```
 https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/ASKIndigo?tab=code
 ```
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step1-ASKIndigoFunction.png)
+
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step2-ASKIndigoFunction.png)
+
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step2b-ASKIndigoFunction.png)
+
+Setup an Event source of type 'Alexa'
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step3-ASKIndigoFunction.png)
 
 For your sample event, use one of the sample alexa requests found in
 ```
