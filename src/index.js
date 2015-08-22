@@ -19,12 +19,26 @@ var password="indigo password";
 var hostname="https://some.indigo.domain.com";
 var port="80";
 
-/** Specific Device names used in speech */
-var thermostatDeviceName = "Thermostat";
-var sprinklerDeviceName = "Sprinklers";
+
+/** Device and Action naming conventions */
+var upperCaseFirstLetter = false;
+
+var spaceBetweenWords = true;
+var dashBetweenWords = false;
+var underscoreBetweenWords = false;
+
+/** Variable name speech substitutions */
+var currentEnergyUseVariableName = "KWNow";
+var sprinklersEnabledVariableName = "sprinklersEnabled";
+
+/** Device name speech substitutions */
+var thermostatDeviceName = "thermostat";
+var sprinklerDeviceName = "sprinklers";
+
 
 /** Amazon Echo Skill application Id */
 var APP_ID = 'amzn1.echo-sdk-ams.app.[unique-id-here]';
+
 
 /**
  * ASKIndigo is a child of AlexaSkill.
@@ -32,6 +46,7 @@ var APP_ID = 'amzn1.echo-sdk-ams.app.[unique-id-here]';
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#Inheritance
  */
+
 var ASKIndigo = function () {
     AlexaSkill.call(this, APP_ID);
 };
@@ -60,12 +75,16 @@ ASKIndigo.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest
 };
 
 ASKIndigo.prototype.intentHandlers = {
-    RunActionIntent: function (intent, session, response) {
-        runAction(intent, session, response);
-    },
-
     DeviceChangeIntent: function (intent, session, response) {
         setDevice(intent, session, response);
+    },
+
+    GetVariableIntent: function (intent, session, response) {
+        getVariable(intent, session, response);
+    },
+
+    RunActionIntent: function (intent, session, response) {
+        runAction(intent, session, response);
     }
 };
 
@@ -82,16 +101,17 @@ exports.handler = function (event, context) {
 /** gives the welcome greeting */
 function getWelcomeResponse(response) {
     var speechOutput = "Ok, what should Indigo do?";
-    var repromptText = "I did not understand you, please try again.";
+    var repromptText = "I did not understand you, what should Indigo do?";
     response.ask(speechOutput, repromptText);
 }
 
 /** sets a device value */
 function setDevice(intent, session, response) {
 
-    var device = intent.slots.Device.value;
+    var device = getDeviceOrActionName(intent.slots.Device.value);
     console.log("\n\nDevice: " + device + "\n");
 
+    var requestType = "device";
     var description;
     var urlParameters;
     var path;
@@ -100,7 +120,6 @@ function setDevice(intent, session, response) {
     if (intent.slots.Binary && intent.slots.Binary.value) {
         // determine truthy-ness of binary speech component
         var isTrue = isBinaryValueTrue(intent.slots.Binary.value);
-
         // Sprinkler Logic
         if (device.toLowerCase() === "sprinklers") {
             description = "Turning sprinklers " + (isTrue?"on":"off");
@@ -132,19 +151,37 @@ function setDevice(intent, session, response) {
         path = "/devices/"+encodeURIComponent(device)+urlParameters;
     }
 
-    makeRequest(path,description,response);
+    makeRequest(path, description, response, intent.slots.Device.value, requestType);
 }
 
 /** runs an action */
 function runAction(intent, session, callback) {
 
-    var actionName = intent.slots.ActionName.value;
+    var actionName = getDeviceOrActionName(intent.slots.ActionName.value);
     console.log("\n\nAction: " + actionName + "\n");
-
+    var requestType = "action";
     var description = "Run Action "+actionName;
     var path = "/actions/"+actionName+"?_method=execute";
 
-    makeRequest(path,description,callback);
+    makeRequest(path, description, callback, intent.slots.ActionName.value, requestType);
+}
+
+/** request the value of a variable */
+function getVariable(intent, session, callback) {
+
+    var variableName = getVariableName(intent.slots.VariableName.value);
+    console.log("\n\nVariable: " + variableName + "\n");
+    var requestType = "variable";
+    var description = "Get variable value "+variableName;
+    var urlParameters = "?_method=get";
+    var path = "/variables/"+encodeURIComponent(variableName)+".txt"+urlParameters;
+
+    makeRequest(path, description, callback, intent.slots.VariableName.value, requestType);
+}
+
+/** returns the value of a variable */
+function parseVariableValue(responseData) {
+    return responseData.slice(responseData.lastIndexOf("value") + 8).trim();
 }
 
 
@@ -161,10 +198,7 @@ function runAction(intent, session, callback) {
  */
 
 /** create http request to automation server */
-function makeRequest( path, description, response) {
-
-    var speechOutput = "";
-
+function makeRequest( path, description, response, slotValue, requestType) {
     console.log("\n\n" + description + "\n");
     console.log("\n\nMaking request: " + hostname+path + "\n");
 
@@ -175,41 +209,113 @@ function makeRequest( path, description, response) {
         port: port,
         method: 'GET'
     }, function (error, res, body) {
-        if (error) {
-            console.log("\n\nError: " + error.message + "\n");
-            speechOutput = "There was an error";
-            response.tell(speechOutput);
-            throw error;
-        }
-        else if (res) {
-            console.log("\n\nResponse: " + res.toString() + "\n");
-            speechOutput = "Ok";
-            response.tell(speechOutput);
-        }
-        else if (body) {
-            console.log("\n\nBody: " + body.toString() + "\n");
-            speechOutput = "Ok";
-            response.tell(speechOutput);
-        }
+        response.tell(getSpeechOutput(error, res, body, slotValue, requestType));
     });
 }
+
+
+/** returns the proper speech output */
+function getSpeechOutput(error, response, body, slotValue, requestType) {
+
+    if (error) {
+        return "There was an error";
+    }
+
+    var result = "Ok";
+
+    if (requestType === "variable") {
+        result = slotValue.replace(/_/g," ") + " is " + parseVariableValue(body);
+    }
+    else if (requestType === "action") {
+        // TODO: parse html response body for errors
+    }
+    else if (requestType === "device") {
+        // TODO: parse html response body for errors
+    }
+
+    return result;
+}
+
+/** returns a proper Device or Action name */
+function getDeviceOrActionName(input) {
+    var result = getCaseAndDilimitedString(input);
+    return result;
+}
+
+/** returns a proper variable name */
+function getVariableName(input) {
+
+    // Special cases for certain variable names
+    if (input === 'current energy use')
+    {
+        return currentEnergyUseVariableName;
+    }
+    else if (input === 'sprinklers enabled') {
+        return sprinklersEnabledVariableName;
+    }
+
+    var result = getCaseAndDilimitedString(input);
+    return result;
+}
+
 
 /** returns a boolean representation of a binary speech element */
 function isBinaryValueTrue(binaryValue) {
 
     binaryValue = binaryValue.toLowerCase();
-    
+
     var isTrue =
         (binaryValue === 'true' ||
-         binaryValue === '1'    ||
-         binaryValue === 'one'  ||
-         binaryValue === 'on'   ||
-         binaryValue === 'start' ||
-         binaryValue === 'resume' ||
-         binaryValue === 'activate' ||
-         binaryValue === 'run' ||
-         binaryValue === 'play'
+        binaryValue === '1'    ||
+        binaryValue === 'one'  ||
+        binaryValue === 'on'   ||
+        binaryValue === 'start' ||
+        binaryValue === 'resume' ||
+        binaryValue === 'activate' ||
+        binaryValue === 'run' ||
+        binaryValue === 'play'
         );
 
     return isTrue;
+}
+
+/** returns a string with the proper case and delimiter */
+function getCaseAndDilimitedString(lowerCaseWithSpacesBetweenWords) {
+    var result = lowerCaseWithSpacesBetweenWords;
+
+    if (dashBetweenWords) {
+        result = result.replace(' ', '-');
+    }
+    else if (underscoreBetweenWords) {
+        result = result.replace(' ', '_');
+    }
+    else if (!spaceBetweenWords) {
+        result = result.replace(' ', '');
+    }
+    //else if (spaceBetweenWords) {
+    //  //Default state
+    //}
+
+    if (upperCaseFirstLetter) {
+        result = upperCaseFirstLetterOfEachWord(result);
+    }
+    //else if (!upperCaseFirstLetter) {
+    //  //Default state
+    //}
+
+    return result;
+}
+
+/** returns the input parameter with all first letters upper cased */
+function upperCaseFirstLetterOfEachWord(input)
+{
+    var pieces = input.split(" ");
+
+    for ( var i = 0; i < pieces.length; i++ )
+    {
+        var j = pieces[i].charAt(0).toUpperCase();
+        pieces[i] = j + pieces[i].substr(1);
+    }
+
+    return pieces.join(" ");
 }

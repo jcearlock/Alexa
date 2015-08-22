@@ -6,6 +6,47 @@
  * Indigo Domotics plugin for the ASK (Alexa Skill Kit) Platform used by the Amazon Echo
  */
 
+
+
+/**
+ Test Input:
+ What is the current energy use
+ */
+{
+    "session": {
+        "new": false,
+        "sessionId": "session1234",
+        "attributes": {},
+        "user": {
+            "userId": null
+        },
+        "application": {
+            "applicationId": "amzn1.echo-sdk-ams.app.xxxxxx"
+        }
+    },
+    "version": "1.0",
+    "request": {
+        "intent": {
+            "slots": {
+                "VariableName": {
+                    "name": "VariableName",
+                    "value": "current energy use"
+                }
+            },
+            "name": "GetVariableIntent"
+        },
+        "type": "IntentRequest",
+        "requestId": "request5678"
+    }
+}
+/**
+Test Output:
+Variable: KWNow
+Get variable value KWNow
+Making request: https://somedomain.goprism.com/variables/KWNow.txt?_method=get
+*/
+
+
 /**
  Test Input:
  Turn off the Guest Bathroom Light
@@ -19,7 +60,7 @@
             "userId": null
         },
         "application": {
-            "applicationId": "amzn1.echo-sdk-ams.app.[unique-value-here]"
+            "applicationId": "amzn1.echo-sdk-ams.app.xxxxxx"
         }
     },
     "version": "1.0",
@@ -62,7 +103,7 @@ Dim the Guest Bathroom Light to 77 percent
             "userId": null
         },
         "application": {
-            "applicationId": "amzn1.echo-sdk-ams.app.[unique-value-here]"
+            "applicationId": "amzn1.echo-sdk-ams.app.xxxxxx"
         }
     },
     "version": "1.0",
@@ -106,7 +147,7 @@ Making request: https://somedomain.goprism.com/devices/Guest%20Bathroom%20Light?
             "userId": null
         },
         "application": {
-            "applicationId": "amzn1.echo-sdk-ams.app.[unique-value-here]"
+            "applicationId": "amzn1.echo-sdk-ams.app.xxxxxx"
         }
 },
     "version": "1.0",

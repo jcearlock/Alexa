@@ -38,6 +38,15 @@
                     "type": "NUMBER"
                 }
             ]
+        },
+        {
+            "intent": "GetVariableIntent",
+            "slots": [
+                {
+                    "name": "VariableName",
+                    "type": "LITERAL"
+                }
+            ]
         }
     ]
 }
