@@ -48,6 +48,15 @@ var password="indigo password";
 var hostname="https://yourcname.goprism.com";
 var port="80";
 
+/** Device and Action naming conventions */
+// set to true if you use upper case names (Foo Item Name)
+// set to false if you use lower case names (foo item name)
+var upperCaseFirstLetter = false; 
+
+var spaceBetweenWords = true;
+var dashBetweenWords = false;
+var underscoreBetweenWords = false;
+
 /** Specific Device names used in speech */
 // ex. device name is 'nest', you say 'thermostat', command uses 'nest'
 var thermostatDeviceName = "nest";
