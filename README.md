@@ -30,6 +30,8 @@ Alexa: "Ok"
 
 Instructions:
 
+Step 1) Prepare your own source code to upload to the Amazon Lambda Function console:
+
 Get the codez, cd into project directory
 ```
 git clone https://github.com/msreynolds/askindigo.git
@@ -58,41 +60,80 @@ var APP_ID = 'amzn1.echo-sdk-ams.app.youramazonapplicationid';
 
 ```
 
-
-Build the zip file you will upload to Amazon Lambda (the archive is stored in ```./dist/askIndigo.zip```):
+Build the zip file you will upload to Amazon Lambda Function Console, the zip file is stored in ```./dist/askIndigo.zip```:
 
 ```
 chmod 775 ./build.sh
 ./build.sh
 ```
 
-Create a Lambda function called 'ASKIndigo'
-Upload Zip file via Amazon Lambda Function console
-```
-https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/ASKIndigo?tab=code
-```
+
+
+Step 2) Create your 'ASKIndigo' Alexa Skill in the Amazon Developer Console:
+
+Go to ```https://developer.amazon.com/edw/home.html```
+
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonDevelopmentConsole-Step1-ASKIndigo-CreateSkill.png)
+
+
+Step 3) Edit the skil, Set invocation name to 'indigo' (or whatever you like) in the Amazon Alexa Developer Console:
+
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonDevelopmentConsole-Step2-ASKIndigo-SkillInformation.png)
+
+
+Step 4) 
+Copy/Paste the contents of ```askIndigo/speechAssets/IntentSchema.json``` into the appropriate section of the Interaction Model in the Amazon Developer Console:
+
+Edit the file ```askIndigo/speechAssets/SampleUtterances.txt``` with your own device name customizations.  Copy/Paste the contents into the appropriate section of the Interaction Model in the Amazon Developer Console:
+
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonDevelopmentConsole-Step3-ASKIndigo-InteractionModel.png)
+
+You DO NOT need to complete the last step labeled 'Publishing Information':
+
+PLEASE DO NOT PUBLISH THIS SKILL IN YOUR NAME
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonDevelopmentConsole-Step4-ASKIndigo-Test.png)
+
+
+Step 5) Create an AWS Role that your Lambda Function will run as:
+
+
+
+Step 6) Create a Lambda function called 'ASKIndigo' in the Amazon Lambda Function Console:
+
+Go to ```https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions```
+
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step0-ASKIndigoFunction.png)
+
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step0b-ASKIndigoFunction.png)
+
+
+
+Step 7) Name your Lambda function, select the ```./dist/askIndigo.zip``` to Upload, Select your AWS Role, Set Timeout:
+
+![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step0c-ASKIndigoFunction.png)
+
+
+Step 8) Test your Skill:
+
+To test your skill, you use fake Alexa request payloads called Sample Events, in JSON format.
+
+Edit the file ```askindigo/test/alexa_requests.json``` with your own Alexa Skill Application ID.
+
+For your Sample Event, Copy/Paste the contents from one of the examples found in this file.
+
+
+
+
+After the first time you create your ASKIndigo Skill, editing the Skill will look like the following:
+
 ![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step1-ASKIndigoFunction.png)
 
 ![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step2-ASKIndigoFunction.png)
 
 ![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step2b-ASKIndigoFunction.png)
 
-Setup an Event source of type 'Alexa'
 ![alt tag](https://github.com/msreynolds/askIndigo/blob/master/help/AmazonLambdaConsole-Step3-ASKIndigoFunction.png)
 
-For your sample event, use one of the sample alexa requests found in
-```
-askindigo/test/alexa_requests.json
-```
 
-Edit the file ```askIndigo/speechAssets/SampleUtterances.txt``` with your own device name customizations
-
-Set invocation name to 'indigo' in the Amazon Alexa Developer portal
-Copy/Paste the speechAssets contents to their respective Interaction Model places in the Amazon Alexa Developer portal
-```
-https://developer.amazon.com/edw/home.html
-IntentSchema.json
-SampleUtterances.txt
-```
 
 
