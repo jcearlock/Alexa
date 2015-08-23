@@ -27,6 +27,10 @@ var spaceBetweenWords = true;
 var dashBetweenWords = false;
 var underscoreBetweenWords = false;
 
+/** Variable naming conventions (can not contain spaces or dashes) */
+var upperCaseFirstLetterVariable = true;
+var underscoreBetweenWordsVariable = false;
+
 /** Variable name speech substitutions */
 var currentEnergyUseVariableName = "KWNow";
 var sprinklersEnabledVariableName = "sprinklersEnabled";
@@ -108,7 +112,7 @@ function getWelcomeResponse(response) {
 /** sets a device value */
 function setDevice(intent, session, response) {
 
-    var device = getDeviceOrActionName(intent.slots.Device.value);
+    var device = getDeviceOrActionName(intent.slots.Device.value, 'device');
     console.log("\n\nDevice: " + device + "\n");
 
     var requestType = "device";
@@ -157,7 +161,7 @@ function setDevice(intent, session, response) {
 /** runs an action */
 function runAction(intent, session, callback) {
 
-    var actionName = getDeviceOrActionName(intent.slots.ActionName.value);
+    var actionName = getDeviceOrActionName(intent.slots.ActionName.value, 'action');
     console.log("\n\nAction: " + actionName + "\n");
     var requestType = "action";
     var description = "Run Action "+actionName;
@@ -224,7 +228,7 @@ function getSpeechOutput(error, response, body, slotValue, requestType) {
     var result = "Ok";
 
     if (requestType === "variable") {
-        result = slotValue.replace(/_/g," ") + " is " + parseVariableValue(body);
+        result = slotValue + " is " + parseVariableValue(body);
     }
     else if (requestType === "action") {
         // TODO: parse html response body for errors
@@ -237,8 +241,8 @@ function getSpeechOutput(error, response, body, slotValue, requestType) {
 }
 
 /** returns a proper Device or Action name */
-function getDeviceOrActionName(input) {
-    var result = getCaseAndDilimitedString(input);
+function getDeviceOrActionName(input, requestType) {
+    var result = getCaseAndDilimitedString(input, requestType);
     return result;
 }
 
@@ -254,7 +258,7 @@ function getVariableName(input) {
         return sprinklersEnabledVariableName;
     }
 
-    var result = getCaseAndDilimitedString(input);
+    var result = getCaseAndDilimitedString(input, 'variable');
     return result;
 }
 
@@ -280,28 +284,39 @@ function isBinaryValueTrue(binaryValue) {
 }
 
 /** returns a string with the proper case and delimiter */
-function getCaseAndDilimitedString(lowerCaseWithSpacesBetweenWords) {
+function getCaseAndDilimitedString(lowerCaseWithSpacesBetweenWords, requestType) {
     var result = lowerCaseWithSpacesBetweenWords;
 
-    if (dashBetweenWords) {
-        result = result.replace(' ', '-');
-    }
-    else if (underscoreBetweenWords) {
-        result = result.replace(' ', '_');
-    }
-    else if (!spaceBetweenWords) {
-        result = result.replace(' ', '');
-    }
-    //else if (spaceBetweenWords) {
-    //  //Default state
-    //}
+    if (requestType === 'variable') {
+        if (upperCaseFirstLetterVariable) {
+            result = upperCaseFirstLetterOfEachWord(result);
+        }
 
-    if (upperCaseFirstLetter) {
-        result = upperCaseFirstLetterOfEachWord(result);
+        // replace spaces with underscore or empty string
+        if (underscoreBetweenWordsVariable) {
+            result = result.replace(/ /g, "_");
+        }
+        else {
+            result = result.replace(/ /g, "");
+        }
     }
-    //else if (!upperCaseFirstLetter) {
-    //  //Default state
-    //}
+    else {
+        if (upperCaseFirstLetter) {
+            result = upperCaseFirstLetterOfEachWord(result);
+        }
+
+        // replace spaces with dashes, underscores, empty strings
+        if (dashBetweenWords) {
+            result = result.replace(/ /g,"-");
+        }
+        else if (underscoreBetweenWords) {
+            result = result.replace(/ /g,"_");
+        }
+        else if (!spaceBetweenWords) {
+            result = result.replace(/ /g,"");
+        }
+        // otherwise leave the spaces
+    }
 
     return result;
 }
