@@ -183,23 +183,16 @@ function getVariable(intent, session, callback) {
     makeRequest(path, description, callback, intent.slots.VariableName.value, requestType);
 }
 
-/** returns the value of a variable */
-function parseVariableValue(responseData) {
-    return responseData.slice(responseData.lastIndexOf("value") + 8).trim();
-}
 
-
-
-//TODO: Implement device and action caching
-//TODO: Create URL Encoded acceptable variants array for 'device'/'action' variable(s)
-//TODO: Find the existing device with the closest name
-//TODO: Ensure device capability before executing
-//var currentDevicesCache = [];
-//var currentActionsCache = [];
 
 /**
  * Utility Functions
  */
+
+/** returns the value of a variable */
+function parseVariableValue(responseData) {
+    return responseData.slice(responseData.lastIndexOf("value") + 8).trim();
+}
 
 /** create http request to automation server */
 function makeRequest( path, description, response, slotValue, requestType) {
