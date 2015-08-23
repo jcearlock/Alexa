@@ -210,7 +210,6 @@ function makeRequest( path, description, response, slotValue, requestType) {
     });
 }
 
-
 /** returns the proper speech output */
 function getSpeechOutput(error, response, body, slotValue, requestType) {
 
@@ -254,7 +253,6 @@ function getVariableName(input) {
     var result = getCaseAndDilimitedString(input, 'variable');
     return result;
 }
-
 
 /** returns a boolean representation of a binary speech element */
 function isBinaryValueTrue(binaryValue) {
