@@ -19,6 +19,9 @@ var password="indigo password";
 var hostname="https://some.indigo.domain.com";
 var port="80";
 
+/** Amazon Echo Skill application Id */
+var APP_ID = 'amzn1.echo-sdk-ams.app.[unique-id-here]';
+
 
 /** Device and Action naming conventions */
 var upperCaseFirstLetter = false;
@@ -38,10 +41,6 @@ var sprinklersEnabledVariableName = "sprinklersEnabled";
 /** Device name speech substitutions */
 var thermostatDeviceName = "thermostat";
 var sprinklerDeviceName = "sprinklers";
-
-
-/** Amazon Echo Skill application Id */
-var APP_ID = 'amzn1.echo-sdk-ams.app.[unique-id-here]';
 
 
 /**
