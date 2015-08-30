@@ -5,7 +5,7 @@ Project: ASKIndigo
 
 Description: Indigo Domotics plugin for the ASK (Alexa Skill Kit) Platform used by the Amazon Echo
 
-Version: 0.0.1b
+Version: 0.9.0
 
 URL: https://github.com/msreynolds/askindigo
 
