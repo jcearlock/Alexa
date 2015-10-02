@@ -12,15 +12,15 @@
 var AlexaSkill = require('./AlexaSkill');
 
 /** Indigo Credentials */
-var username="indigo username";
-var password="indigo password";
+var username="jcearlock";
+var password="$Weet4527indigo";
 
 /** Indigo Public Hostname */
-var hostname="https://some.indigo.domain.com";
-var port="80";
+var hostname="https://96.35.60.9";
+var port="8176";
 
 /** Amazon Echo Skill application Id */
-var APP_ID = 'amzn1.echo-sdk-ams.app.[unique-id-here]';
+var APP_ID = 'amzn1.echo-sdk-ams.app.93a47997-cbaf-48ba-b682-e727c6305761';
 
 
 /** Device and Action naming conventions */
