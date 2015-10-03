@@ -16,7 +16,7 @@ var username="jcearlock";
 var password="$weet4527indigo";
 
 /** Indigo Public Hostname */
-var hostname="https://96.35.60.9";
+var hostname="https://520.mynetgear.com:8176/";
 var port="8176";
 
 /** Amazon Echo Skill application Id */
